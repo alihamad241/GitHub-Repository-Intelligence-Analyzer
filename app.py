@@ -93,10 +93,6 @@ django/django">{{ default_repos }}</textarea>
     </button>
   </form>
 
-  <div class="note">
-    No GitHub token configured — using unauthenticated API (60 req/hr).
-    Keep the list to ≤ 3 repos for reliability without a token.
-  </div>
 </div>
 <script>
   document.getElementById("form").addEventListener("submit", function() {
