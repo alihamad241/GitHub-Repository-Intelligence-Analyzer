@@ -39,3 +39,84 @@ The tool produces consistent output for consumption:
 
 - **JSON Reports:** For machine analysis and integrations.
 - **HTML Reports:** Self-contained visualization showcasing metrics and classifications.
+
+## Scoring Formulas
+
+### Activity Score (0–100)
+
+Measures how actively the repo is developed over the past 90 days.
+
+```text
+raw   = (commits_90d  × 0.40)   # commit cadence — strongest signal
+      + (contributors × 0.30)   # sustained team engagement
+      + (issues_closed × 0.20)  # responsiveness to problems
+      + (prs_merged    × 0.10)  # code actually landing
+
+score = min(raw, 100)
+```
+
+**Rationale:** Commits weighted highest (0.40) because they represent real code work. Contributors weighted second (0.30) because solo repos are inherently less sustainable. Issues and PRs weighted lower because they can be absent in healthy research or library repos.
+
+### Complexity Score (0–100)
+
+Measures structural complexity of the codebase.
+
+```text
+raw   = (file_count / 10     × 0.35)   # size proxy
+      + (language_count × 5  × 0.40)   # polyglot breadth — strongest signal
+      + (dep_file_count × 8  × 0.25)   # dependency surface area
+
+score = min(raw, 100)
+```
+
+**Rationale:** Language diversity weighted highest (0.40) because a repo mixing TypeScript + Python + Dockerfile + SCSS requires more breadth to understand than a large single-language codebase. File count is a rough size proxy; dependency files indicate how much third-party knowledge is assumed.
+
+### Difficulty Classification
+
+```text
+Beginner     complexity ≤ 25  AND  contributors ≤ 10
+Advanced     complexity ≥ 70  OR   contributors ≥ 100
+Intermediate everything else
+```
+
+## Installation & Usage
+
+### Prerequisites
+
+- Python 3.11+
+- (Optional but recommended) A GitHub Personal Access Token — raises rate limit from 60 to 5000 requests/hour. Generate one at https://github.com/settings/tokens.
+
+### Setup
+
+```bash
+git clone https://github.com/YOUR_USERNAME/repo-intelligence-analyzer
+cd repo-intelligence-analyzer
+
+pip install -r requirements.txt
+
+cp .env.example .env
+# Edit .env and add your GITHUB_TOKEN if you have one
+```
+
+### CLI — Analyze Specific Repos
+
+```bash
+# Default: analyze the sample repos embedded in the code
+python main.py
+
+# Analyze specific repos
+python main.py c2siorg/Webiu vuejs/vue django/django
+
+# Analyze from a file (one URL per line)
+python main.py --repos-file my-repos.txt
+
+# Skip HTML output, JSON only
+python main.py --no-html
+```
+
+### Web App — Run Locally
+
+```bash
+python app.py
+# Open http://localhost:8000
+```
