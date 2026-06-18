@@ -1,0 +1,9 @@
+{
+  "name": "github-repository-intelligence-analyzer",
+  "version": "1.0.0",
+  "description": "GitHub Repository Intelligence Analyzer with Vercel Web Analytics",
+  "private": true,
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  }
+}

@@ -37,6 +37,7 @@ INDEX_HTML = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>GitHub Repository Intelligence Analyzer</title>
+  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
