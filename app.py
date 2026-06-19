@@ -25,8 +25,8 @@ from analyzer.reporter import generate_html, generate_json
 
 app = Flask(__name__)
 
-REPORTS_DIR = Path("reports")
-REPORTS_DIR.mkdir(exist_ok=True)
+REPORTS_DIR = Path("/tmp/reports")
+REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 # Simple in-memory lock so concurrent requests don't collide
 _lock = threading.Lock()
