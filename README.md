@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-[Live Demo]([https://github-repository-intelligence-analyzer-production.up.railway.app/](https://git-hub-repository-intelligence-ana.vercel.app/))
+[Live Demo](https://git-hub-repository-intelligence-ana.vercel.app/)
 
 ## Introduction
 
